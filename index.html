@@ -1,44 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>projeto-dashboard</title>
+    <title>Painel de Ferramentas</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
+
     <header>
-        Painel de Ferramentas
+        <h1>Painel de Ferramentas</h1>
+        <img id="theme" src="./img/moon_recortado.png" alt="alternar tema" />
     </header>
 
-    <div id="header">
-        <h1>Vai entrar informações de cada ferramenta<h1>
-    </div>
+    <main>
 
-      <div id="container">
-
-            <div id="sidebar">
+        <aside>
             <ul id="menu">
-                <li><a id="conversor" href="">Conversor</a></li>
-                <li><a id="imc" href="">IMC</a></li>
+                <li><a id="conversor"   href="">Conversor</a></li>
+                <li><a id="imc"         href="">IMC</a></li>
                 <li><a id="temperatura" href="">Temperatura</a></li>
-                <li><a id="velocidade" href="">Velocidade</a></li>
-                <li><a id="massa" href="">Massa</a></li>
-                <li><a id="regra" href="">Regra</a></li>
+                <li><a id="velocidade"  href="">Velocidade</a></li>
+                <li><a id="massa"       href="">Massa</a></li>
+                <li><a id="regra3"      href="">Regra de 3</a></li>
             </ul>
-        </div>
-     
-        <div id="conteudo">
-            <p id="instrucao">layout / código vai ficar aqui </p>               
-        </div>
+        </aside>
 
-    </div>
+        <section class="hidden conversor">
+            <h2>Desafio 1 — Conversor de Moedas</h2>
+            <p class="subtitulo">Cotação do dólar em tempo real (USD → BRL)</p>
 
-      <div id="footer">
-        <p>FOOTER</p>
-    </div>
+            <div class="cotacao-box" id="cotacao-box">
+                <span id="cotacao-status">Buscando cotação...</span>
+            </div>
+
+            <div class="form-conversor">
+                <div class="campo">
+                    <label for="conv-valor">Valor em USD ($):</label>
+                    <input type="number" id="conv-valor" placeholder="Ex: 100" min="0" step="0.01" />
+                </div>
+                <button id="btn-converter">Converter para BRL</button>
+            </div>
+
+            <div id="conv-resultado"></div>
+        </section>
+
+        <section class="hidden imc">
+            <h2>Desafio 2 — Cálculo de IMC por Gênero </h2>
+
+            <div class="form-conversor">
+                <div class="campo">
+                    <label for="imc-peso">Peso (kg):</label>
+                    <input type="number" id="imc-peso" placeholder="Ex: 70" min="1" step="0.1" />
+                </div>
+                <div class="campo">
+                    <label for="imc-altura">Altura (m):</label>
+                    <input type="number" id="imc-altura" placeholder="Ex: 1.75" min="0.01" step="0.01" />
+                </div>
+                <div class="campo">
+                    <label for="imc-genero">Gênero:</label>
+                    <select id="imc-genero">
+                        <option value="">Selecione...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                </div>
+                <button id="btn-calcular-imc">Calcular IMC</button>
+            </div>
+                </main>
+
+    <footer>
+        <em><p>Todos os direitos reservados © 2023</p></em>
+    </footer>
 
 </body>
 </html>
