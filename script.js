@@ -48,7 +48,7 @@ document.getElementById("menu").addEventListener("click", function(evento) {
 document.getElementById("theme").addEventListener("click", function() {
     document.body.classList.toggle("dark");
     const temaEscuro = document.body.classList.contains("dark");
-    this.src = temaEscuro ? "./img/sun_recortado.png" : "./img/moon_recortado.png";
+    this.src = temaEscuro ? "./img/sun.png" : "./img/moon.png";
 });
 
 let cotacaoAtual = null;
@@ -64,7 +64,7 @@ function buscarCotacao() {
         .then(function(data) {
             cotacaoAtual = parseFloat(data.USDBRL.bid);
             const cotacaoFormatada = cotacaoAtual.toLocaleString("pt-BR", { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-            statusEl.innerHTML = "<strong>1 USD = R$ " + cotacaoFormatada + "</strong> &nbsp;|&nbsp; Fonte: AwesomeAPI";
+            statusEl.innerHTML = "<strong>1 USD = R$ " + cotacaoFormatada + "</strong> &nbsp;|&nbsp; Dólar";
             document.getElementById("cotacao-box").className = "cotacao-box cotacao-ok";
         })
         .catch(function() {
