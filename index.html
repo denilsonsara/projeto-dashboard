@@ -69,44 +69,43 @@
                 <button id="btn-calcular-imc">Calcular IMC</button>
             </div>
 
-            <section class="hidden temperatura">
-            <h2>Conversor de Temperatura</h2>
+            <div id="imc-resultado"></div>
+        </section>
+
+        <section class="hidden temperatura">
+            <h2>Conversor de Temperatura </h2>
 
             <div class="form-conversor">
                 <div class="campo">
                     <label for="temp-valor">Valor:</label>
-                    <input type="number" id="temp-valor" placeholder="Ex: 100" step="0.01" />
+                    <input type="number" id="temp-valor" placeholder="Ex: 100" step="0.1" />
                 </div>
                 <div class="campo">
                     <label for="temp-direcao">Converter:</label>
                     <select id="temp-direcao">
                         <option value="CF">°C → °F</option>
                         <option value="FC">°F → °C</option>
-                        </select>
-
-
-                
+                    </select>
+                </div>
                 <button id="btn-converter-temp">Converter</button>
             </div>
 
             <div id="temp-resultado"></div>
-            
+        </section>
 
+        <section class="hidden velocidade">
+            <h2>Conversor de Velocidade </h2>
 
+            <div class="form-conversor">
+                <div class="campo">
+                    <label for="vel-valor">Valor:</label>
+                    <input type="number" id="vel-valor" placeholder="Ex: 100" min="0" step="0.1" />
+                </div>
 
-
-
-
-
-
-
-
-
-
-                </main>
+    </main>
 
     <footer>
-        <em><p>Todos os direitos reservados © 2023</p></em>
+        <em><p>Todos os direitos reservados © 2026</p></em>
     </footer>
 
 </body>
