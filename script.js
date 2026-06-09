@@ -1,3 +1,16 @@
+document.getElementById("btn-limpar").addEventListener("click", function() {
+    const ativa = document.querySelector("section:not(.hidden)");
+    if (ativa) {
+        ativa.querySelectorAll("input, select").forEach(function(campo) {
+            campo.value = "";
+        });
+        ativa.querySelectorAll(".resultado").forEach(function(res) {
+            res.className = "resultado";
+            res.innerHTML = "";
+        });
+    }
+});
+
 function displayControler(id) {
     const sections = document.querySelectorAll("section");
     sections.forEach(function(section) {
@@ -48,7 +61,7 @@ document.getElementById("menu").addEventListener("click", function(evento) {
 document.getElementById("theme").addEventListener("click", function() {
     document.body.classList.toggle("dark");
     const temaEscuro = document.body.classList.contains("dark");
-    this.src = temaEscuro ? "./img/sun_recortado.png" : "./img/moon_recortado.png";
+    this.src = temaEscuro ? "./img/sun.png" : "./img/moon.png";
 });
 
 let cotacaoAtual = null;
@@ -64,7 +77,7 @@ function buscarCotacao() {
         .then(function(data) {
             cotacaoAtual = parseFloat(data.USDBRL.bid);
             const cotacaoFormatada = cotacaoAtual.toLocaleString("pt-BR", { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-            statusEl.innerHTML = "<strong>1 USD = R$ " + cotacaoFormatada + "</strong> &nbsp;|&nbsp; Fonte: AwesomeAPI";
+            statusEl.innerHTML = "<strong>1 USD = R$ " + cotacaoFormatada + "</strong> &nbsp;|&nbsp; Dólar";
             document.getElementById("cotacao-box").className = "cotacao-box cotacao-ok";
         })
         .catch(function() {
@@ -250,4 +263,5 @@ document.getElementById("btn-calcular-r3").addEventListener("click", function() 
         "<strong>B:</strong> " + formatarNumero(b, 2) + " &nbsp;|&nbsp; " +
         "<strong>C:</strong> " + formatarNumero(c, 2) + "</p>" +
         "<p>X = (B × C) / A = (" + formatarNumero(b, 2) + " × " + formatarNumero(c, 2) + ") / " + formatarNumero(a, 2) + " = <strong>" + formatarNumero(x, 4) + "</strong></p>";
+        
 });
