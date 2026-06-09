@@ -142,7 +142,40 @@
 
             <div id="massa-resultado"></div>
         </section>
-        
+
+        <section class="hidden regra3">
+            <h2>Desafio 6 — Regra de Três </h2>
+            <p class="subtitulo">Preencha A, B e C — o sistema calcula X automaticamente.</p>
+
+            <div class="proporcao-box">
+                <div class="proporcao-linha">
+                    <div class="campo">
+                        <label for="r3-a">A</label>
+                        <input type="number" id="r3-a" placeholder="A" step="any" />
+                    </div>
+                    <span class="proporcao-sep">está para</span>
+                    <div class="campo">
+                        <label for="r3-b">B</label>
+                        <input type="number" id="r3-b" placeholder="B" step="any" />
+                    </div>
+                </div>
+                <div class="proporcao-igual">assim como</div>
+                <div class="proporcao-linha">
+                    <div class="campo">
+                        <label for="r3-c">C</label>
+                        <input type="number" id="r3-c" placeholder="C" step="any" />
+                    </div>
+                    <span class="proporcao-sep">está para</span>
+                    <div class="campo">
+                        <label for="r3-x">X (resultado)</label>
+                        <input type="number" id="r3-x" placeholder="X" readonly />
+                    </div>
+                </div>
+                <button id="btn-calcular-r3">Calcular X</button>
+            </div>
+
+            <div id="r3-resultado"></div>
+        </section>        
 
     </main>
 
