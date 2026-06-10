@@ -15,7 +15,6 @@
     </header>
 
     <main>
-        <button id="btn-limpar">Limpar</button>
 
         <aside>
             <ul id="menu">
@@ -29,33 +28,34 @@
         </aside>
 
         <section class="hidden conversor">
-    <h2>Conversor de Moedas</h2>
-    <p class="subtitulo">Cotação do dólar em tempo real</p>
+            <h2>Conversor de Moedas</h2>
+            <p class="subtitulo">Cotação do dólar em tempo real</p>
 
-    <div class="cotacao-box" id="cotacao-box">
-        <span id="cotacao-status">Buscando cotação...</span>
-    </div>
+            <div class="cotacao-box" id="cotacao-box">
+                <span id="cotacao-status">Buscando cotação...</span>
+            </div>
 
-    <div class="form-conversor">
-        <div class="campo">
-            <label for="conv-valor">Valor:</label>
-            <input type="number" id="conv-valor" placeholder="Ex: 100" min="0" step="0.01" />
-        </div>
-        <div class="campo">
-            <label for="conv-direcao">Converter:</label>
-            <select id="conv-direcao">
-                <option value="UD">USD → BRL</option>
-                <option value="DU">BRL → USD</option>
-            </select>
-        </div>
-        <button id="btn-converter">Converter</button>
-    </div>
+            <div class="form-conversor">
+                <div class="campo">
+                    <label for="conv-valor">Valor:</label>
+                    <input type="number" id="conv-valor" placeholder="Ex: 100" min="0" step="0.01" />
+                </div>
+                <div class="campo">
+                    <label for="conv-direcao">Converter:</label>
+                    <select id="conv-direcao">
+                        <option value="UD">USD → BRL</option>
+                        <option value="DU">BRL → USD</option>
+                    </select>
+                </div>
+                <button id="btn-converter">Converter</button>
+            </div>
 
-    <div id="conv-resultado"></div>
-</section>
+            <div id="conv-resultado" class="resultado"></div>
+            <button id="btn-limpar" class="btn-limpar">Limpar</button>
+        </section>
 
         <section class="hidden imc">
-            <h2>Cálculo de IMC por Gênero </h2>
+            <h2>Cálculo de IMC por Gênero</h2>
 
             <div class="form-conversor">
                 <div class="campo">
@@ -77,11 +77,12 @@
                 <button id="btn-calcular-imc">Calcular IMC</button>
             </div>
 
-            <div id="imc-resultado"></div>
+            <div id="imc-resultado" class="resultado"></div>
+            <button class="btn-limpar">Limpar</button>
         </section>
 
         <section class="hidden temperatura">
-            <h2>Conversor de Temperatura </h2>
+            <h2>Conversor de Temperatura</h2>
 
             <div class="form-conversor">
                 <div class="campo">
@@ -98,11 +99,12 @@
                 <button id="btn-converter-temp">Converter</button>
             </div>
 
-            <div id="temp-resultado"></div>
+            <div id="temp-resultado" class="resultado"></div>
+            <button class="btn-limpar">Limpar</button>
         </section>
 
         <section class="hidden velocidade">
-            <h2>Conversor de Velocidade </h2>
+            <h2>Conversor de Velocidade</h2>
 
             <div class="form-conversor">
                 <div class="campo">
@@ -119,11 +121,12 @@
                 <button id="btn-converter-vel">Converter</button>
             </div>
 
-            <div id="vel-resultado"></div>
+            <div id="vel-resultado" class="resultado"></div>
+            <button class="btn-limpar">Limpar</button>
         </section>
 
         <section class="hidden massa">
-            <h2>Conversor de Massa </h2>
+            <h2>Conversor de Massa</h2>
 
             <div class="form-conversor">
                 <div class="campo">
@@ -140,11 +143,12 @@
                 <button id="btn-converter-massa">Converter</button>
             </div>
 
-            <div id="massa-resultado"></div>
+            <div id="massa-resultado" class="resultado"></div>
+            <button class="btn-limpar">Limpar</button>
         </section>
 
         <section class="hidden regra3">
-            <h2>Desafio 6 — Regra de Três </h2>
+            <h2>Regra de Três</h2>
             <p class="subtitulo">Preencha A, B e C — o sistema calcula X automaticamente.</p>
 
             <div class="proporcao-box">
@@ -168,19 +172,20 @@
                     <span class="proporcao-sep">está para</span>
                     <div class="campo">
                         <label for="r3-x">X (resultado)</label>
-                        <input type="number" id="r3-x" placeholder="X" readonly />
+                        <input type="text" id="r3-x" placeholder="X" readonly />
                     </div>
                 </div>
                 <button id="btn-calcular-r3">Calcular X</button>
             </div>
 
-            <div id="r3-resultado"></div>
-        </section>        
+            <div id="r3-resultado" class="resultado"></div>
+            <button class="btn-limpar">Limpar</button>
+        </section>
 
     </main>
 
     <footer>
-        <em><p>Todos os direitos reservados © 2026</p></em>
+        <p>Todos os direitos reservados &copy; 2026</p>
     </footer>
 
 </body>

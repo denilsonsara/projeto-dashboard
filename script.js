@@ -1,13 +1,24 @@
-document.getElementById("btn-limpar").addEventListener("click", function() {
+function limparConsulta() {
     const ativa = document.querySelector("section:not(.hidden)");
     if (ativa) {
-        ativa.querySelectorAll("input, select").forEach(function(campo) {
-            campo.value = "";
+        ativa.querySelectorAll("input").forEach(function(campo) {
+            if (!campo.readOnly) {
+                campo.value = "";
+            }
+        });
+        ativa.querySelectorAll("select").forEach(function(sel) {
+            sel.selectedIndex = 0;
         });
         ativa.querySelectorAll(".resultado").forEach(function(res) {
             res.className = "resultado";
             res.innerHTML = "";
         });
+    }
+}
+
+document.addEventListener("click", function(evento) {
+    if (evento.target.classList.contains("btn-limpar")) {
+        limparConsulta();
     }
 });
 
@@ -87,12 +98,13 @@ function buscarCotacao() {
 }
 
 document.getElementById("btn-converter").addEventListener("click", function() {
-    const valorUSD  = parseFloat(document.getElementById("conv-valor").value);
+    const valor     = parseFloat(document.getElementById("conv-valor").value);
+    const direcao   = document.getElementById("conv-direcao").value;
     const resultado = document.getElementById("conv-resultado");
 
-    if (!valorUSD || valorUSD <= 0) {
+    if (isNaN(valor) || valor <= 0) {
         resultado.className = "resultado erro";
-        resultado.innerHTML = "Informe um valor válido em USD.";
+        resultado.innerHTML = "Campo <strong>Valor</strong> não pode ser vazio ou zero.";
         return;
     }
     if (!cotacaoAtual) {
@@ -101,13 +113,22 @@ document.getElementById("btn-converter").addEventListener("click", function() {
         return;
     }
 
-    const valorBRL = valorUSD * cotacaoAtual;
     const cotacaoFormatada = cotacaoAtual.toLocaleString("pt-BR", { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+    let de, para;
+
+    if (direcao === "UD") {
+        const convertido = valor * cotacaoAtual;
+        de   = formatarUSD(valor);
+        para = formatarBRL(convertido);
+    } else {
+        const convertido = valor / cotacaoAtual;
+        de   = formatarBRL(valor);
+        para = formatarUSD(convertido);
+    }
 
     resultado.className = "resultado ok";
     resultado.innerHTML =
-        "<p><strong>" + formatarUSD(valorUSD) + "</strong></p>" +
-        "<p>= <strong>" + formatarBRL(valorBRL) + "</strong></p>" +
+        "<p><strong>" + de + "</strong> = <strong>" + para + "</strong></p>" +
         "<p class='taxa'>Cotação utilizada (bid): R$ " + cotacaoFormatada + "</p>";
 });
 
@@ -117,14 +138,14 @@ document.getElementById("btn-calcular-imc").addEventListener("click", function()
     const genero    = document.getElementById("imc-genero").value;
     const resultado = document.getElementById("imc-resultado");
 
-    if (!peso || !altura || !genero) {
+    const erros = [];
+    if (isNaN(peso)   || peso <= 0)   { erros.push("<strong>Peso</strong> inválido ou vazio"); }
+    if (isNaN(altura) || altura <= 0) { erros.push("<strong>Altura</strong> inválida ou zero"); }
+    if (!genero)                      { erros.push("<strong>Gênero</strong> não selecionado"); }
+
+    if (erros.length > 0) {
         resultado.className = "resultado erro";
-        resultado.innerHTML = "Preencha todos os campos corretamente.";
-        return;
-    }
-    if (altura <= 0) {
-        resultado.className = "resultado erro";
-        resultado.innerHTML = "Altura não pode ser zero ou vazia.";
+        resultado.innerHTML = "Corrija: " + erros.join(" | ");
         return;
     }
 
@@ -144,12 +165,10 @@ document.getElementById("btn-calcular-imc").addEventListener("click", function()
         else                  { classificacao = "Obesidade"; }
     }
 
-    const nomeGenero = genero === "M" ? "Masculino" : "Feminino";
-
     resultado.className = "resultado ok";
     resultado.innerHTML =
         "<p><strong>IMC:</strong> " + imcFormatado + "</p>" +
-        "<p><strong>Gênero:</strong> " + nomeGenero + "</p>" +
+        "<p><strong>Gênero:</strong> " + (genero === "M" ? "Masculino" : "Feminino") + "</p>" +
         "<p><strong>Classificação:</strong> " + classificacao + "</p>";
 });
 
@@ -160,7 +179,7 @@ document.getElementById("btn-converter-temp").addEventListener("click", function
 
     if (isNaN(valor)) {
         resultado.className = "resultado erro";
-        resultado.innerHTML = "Informe um valor válido.";
+        resultado.innerHTML = "Campo <strong>Valor</strong> não pode ser vazio.";
         return;
     }
 
@@ -187,7 +206,7 @@ document.getElementById("btn-converter-vel").addEventListener("click", function(
 
     if (isNaN(valor) || valor < 0) {
         resultado.className = "resultado erro";
-        resultado.innerHTML = "Informe um valor válido.";
+        resultado.innerHTML = "Campo <strong>Valor</strong> não pode ser vazio ou negativo.";
         return;
     }
 
@@ -214,7 +233,7 @@ document.getElementById("btn-converter-massa").addEventListener("click", functio
 
     if (isNaN(valor) || valor < 0) {
         resultado.className = "resultado erro";
-        resultado.innerHTML = "Informe um valor válido.";
+        resultado.innerHTML = "Campo <strong>Valor</strong> não pode ser vazio ou negativo.";
         return;
     }
 
@@ -241,16 +260,15 @@ document.getElementById("btn-calcular-r3").addEventListener("click", function() 
     const campoX    = document.getElementById("r3-x");
     const resultado = document.getElementById("r3-resultado");
 
-    if (!a || a === 0) {
+    const erros = [];
+    if (isNaN(a) || a === 0) { erros.push("<strong>A</strong> não pode ser zero ou vazio (divisão por zero)"); }
+    if (isNaN(b))            { erros.push("<strong>B</strong> está vazio"); }
+    if (isNaN(c))            { erros.push("<strong>C</strong> está vazio"); }
+
+    if (erros.length > 0) {
         campoX.value = "";
         resultado.className = "resultado erro";
-        resultado.innerHTML = "O campo A não pode ser zero ou vazio — divisão por zero bloqueada.";
-        return;
-    }
-
-    if (isNaN(b) || isNaN(c)) {
-        resultado.className = "resultado erro";
-        resultado.innerHTML = "Preencha todos os campos A, B e C.";
+        resultado.innerHTML = "Corrija: " + erros.join(" | ");
         return;
     }
 
@@ -263,5 +281,4 @@ document.getElementById("btn-calcular-r3").addEventListener("click", function() 
         "<strong>B:</strong> " + formatarNumero(b, 2) + " &nbsp;|&nbsp; " +
         "<strong>C:</strong> " + formatarNumero(c, 2) + "</p>" +
         "<p>X = (B × C) / A = (" + formatarNumero(b, 2) + " × " + formatarNumero(c, 2) + ") / " + formatarNumero(a, 2) + " = <strong>" + formatarNumero(x, 4) + "</strong></p>";
-        
 });
